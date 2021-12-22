@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO2 Forecasting</title>
+    
+    <style>
+        .head {
+            background-color: rgb(23, 110, 6);
+            text-align: center;
+            color: white;
+            font-style: italic;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .head2 {
+            text-align: center;
+            color: rgb(1, 2, 10);
+            font-style: italic;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10 px;
+            font-weight: 100;
+        }
+        #forecast {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 20%;
+          text-align: center;
+          width: 50%;
+        }
+        
+        #forecast  td, #forecast  th {
+          border: 1px solid #ddd;
+          padding: 8px;
+          width: 50%;
+          text-align: center;
+        }
+        
+        #forecast  tr:nth-child(even){background-color: #f2f2f2;}
+        
+        #forecast  tr:hover {background-color: #ddd;}
+        
+        #forecast  th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: center;
+          background-color: #04AA6D;
+          color: white;
+        }
+      
+      </style>
+</head>
+<body>
+    
+    <h1 class="head">CO2 Emission Forecaster</h1>
+    <h2 class="head2">This forecaster is bulit on ARIMA model which considers the previous CO2 emissions, and try to forecast the values of CO2 emission for coming years. This forecast will be helpful to understand what can be the estimated emision levels, and if estimated levels are high, organization can undertake preventive measures to keep them below the standards provided by Government </h2>
+        
+    <br>
+    <div style="margin-left: 500px;"><h3>Enter the number of years(1 to 50)</h3>
+      <form action="predict" method="post">
+          <input type="text" name="years" placeholder="Enter the number of years"><br><br>
+            <input type="submit" placeholder="Show" style="width: 100px; height: 25px; color: #000302; background-color: #e3b2ec;">
+      </form>
+      <br>
+      <h3>{{ prediction_texts }}</h3>
+  
+      <table class= "table" id="forecast" style="text-align: center;">
+          <tr class="table__header" style="text-align: center;">
+              {% for header in headings %}
+              <th class= "table__cell">{{ header }}</th>
+              {% endfor %}
+          </tr class="table__row">
+          {% for row in data %}
+          <tr>
+              {% for cell in row %}
+              <td class="table__cell">{{cell}}</td>
+              {% endfor %}
+          </tr>
+          {% endfor %}
+      </table></div>
+      
+        
+      
+    
+
+  
+  <br>
+</body>
+</html> 
